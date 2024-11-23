@@ -33,7 +33,7 @@ internal class UserService : IUserService
 
     public async Task<IEnumerable<User>> GetUsersAsync(CancellationToken cancellationToken)
     {
-        var query = from user in _sqlDbContext.Users
+        var query = from user in _sqlDbContext.User
             join address in _sqlDbContext.PostalAddress
                 on user.Id equals address.UserId into groupingAddress
             from address in groupingAddress.DefaultIfEmpty()
@@ -56,14 +56,14 @@ internal class UserService : IUserService
 
     public async Task<User> GetUserByIdAsync(int id, CancellationToken cancellationToken)
     {
-        var user = await _sqlDbContext.Users.SingleAsync(x => x.Id == id, cancellationToken);
+        var user = await _sqlDbContext.User.SingleAsync(x => x.Id == id, cancellationToken);
 
         return user;
     }
 
     public async Task<User> GetUserByEmailAsync(string email, CancellationToken cancellationToken)
     {
-        var query = from user in _sqlDbContext.Users
+        var query = from user in _sqlDbContext.User
             join address in _sqlDbContext.PostalAddress
                 on user.Id equals address.UserId into grouping
             from address in grouping.DefaultIfEmpty()
@@ -89,14 +89,14 @@ internal class UserService : IUserService
 
     public async Task<User> GetUserAsync(string email, CancellationToken cancellationToken)
     {
-        var user = await _sqlDbContext.Users.FirstOrDefaultAsync(x => x.Email == email, cancellationToken);
+        var user = await _sqlDbContext.User.FirstOrDefaultAsync(x => x.Email == email, cancellationToken);
 
         return user;
     }
 
     public async Task<string> SaveUserAsync(User user, CancellationToken cancellationToken)
     {
-        await _sqlDbContext.Users.AddAsync(user, cancellationToken);
+        await _sqlDbContext.User.AddAsync(user, cancellationToken);
         await _sqlDbContext.SaveAsync(cancellationToken);
 
         return user.Id.ToString();
@@ -121,7 +121,7 @@ internal class UserService : IUserService
             return result;
         }
 
-        _sqlDbContext.Users.Update(user);
+        _sqlDbContext.User.Update(user);
         await _sqlDbContext.SaveAsync(cancellationToken);
 
         result.Message = "Vos informations ont bien été mise à jour";
@@ -134,7 +134,7 @@ internal class UserService : IUserService
     {
         var result = new ApiResponse();
         result.Success = true;
-        result.Data = await _sqlDbContext.Roles.Where(x => x.Id == roleId).Select(x => x.Name).ToListAsync(cancellationToken);
+        result.Data = await _sqlDbContext.Role.Where(x => x.Id == roleId).Select(x => x.Name).ToListAsync(cancellationToken);
 
         return result;
     }
@@ -144,7 +144,7 @@ internal class UserService : IUserService
         var result = new ApiResponse();
 
         result.Success = true;
-        _sqlDbContext.Users.Update(user);
+        _sqlDbContext.User.Update(user);
         await _sqlDbContext.SaveAsync(cancellationToken);
 
         return result;
@@ -152,6 +152,6 @@ internal class UserService : IUserService
 
     public async Task<int> GetUsersCountAsync(CancellationToken cancellationToken)
     {
-        return await _sqlDbContext.Users.CountAsync(cancellationToken);
+        return await _sqlDbContext.User.CountAsync(cancellationToken);
     }
 }

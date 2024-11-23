@@ -6,8 +6,8 @@ namespace Project.Common.DataAccess.DataBaseFactory;
 
 public class SqlDbContext(DbContextOptions<SqlDbContext> options) : DbContext(options)
 {
-    public DbSet<User> Users { get; set; }
-    public DbSet<Role> Roles { get; set; }
+    public DbSet<User> User { get; set; }
+    public DbSet<Role> Role { get; set; }
     public DbSet<PostalAddress> PostalAddress { get; set; }
     public DbSet<UserPreferences> UserPreferences { get; set; }
 

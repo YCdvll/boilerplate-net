@@ -23,7 +23,7 @@ CREATE TABLE `Role` (
                         `Id` int(11) NOT NULL AUTO_INCREMENT,
                         `Name` varchar(255) NOT NULL,
                         PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_uca1400_ai_ci;
 
 CREATE TABLE `User` (
                         `Id` int(11) NOT NULL AUTO_INCREMENT,
@@ -55,12 +55,10 @@ CREATE TABLE `UserPreferences` (
 
 
 
-
-
-
-
-
-
+INSERT INTO `Role` (`Id`, `Name`) VALUES
+    (1, 'Admin');
+INSERT INTO `Role` (`Id`, `Name`) VALUES
+    (2, 'User');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

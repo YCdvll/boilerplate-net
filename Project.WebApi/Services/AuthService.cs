@@ -106,8 +106,8 @@ public class AuthService : IAuthService
             Link = activationLink
         };
 
-        var htmlTemplate = await _mailService.BuildTemplateHtmlAsync(mailData, MailTemplateEnum.Welcome, cancellationToken);
-        await _mailService.SendMailAsync(user.Email, "Bienvenue sur domain", htmlTemplate, null, cancellationToken);
+        // var htmlTemplate = await _mailService.BuildTemplateHtmlAsync(mailData, MailTemplateEnum.Welcome, cancellationToken);
+        // await _mailService.SendMailAsync(user.Email, "Bienvenue sur domain", htmlTemplate, null, cancellationToken);
 
         return new AccountResponse($"Bienvenue {user.FirstName}, un mail vous a été envoyé pour valider votre compte.", true);
     }

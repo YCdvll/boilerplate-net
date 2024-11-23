@@ -22,3 +22,9 @@ docs for more detail on building and pushing.
 * [Docker's .NET guide](https://docs.docker.com/language/dotnet/)
 * The [dotnet-docker](https://github.com/dotnet/dotnet-docker/tree/main/samples)
   repository has many relevant samples and docs.
+
+
+### MariaDB init
+* dot not use this params in production
+
+docker run -d --name project-database -e MYSQL_ROOT_PASSWORD=root -p 3306:3306 mariadb:latest

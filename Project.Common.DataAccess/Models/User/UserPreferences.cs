@@ -10,6 +10,4 @@ public class UserPreferences
     public int UserId { get; set; }
     public bool NewsLetter { get; set; }
     public bool EmailNotification { get; set; }
-    public bool PushNotification { get; set; }
-    public bool VisibleInRegion { get; set; }
 }

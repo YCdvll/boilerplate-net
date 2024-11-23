@@ -91,9 +91,7 @@ public class AuthService : IAuthService
         {
             Updated = DateTime.Now,
             NewsLetter = true,
-            EmailNotification = true,
-            PushNotification = true,
-            VisibleInRegion = true
+            EmailNotification = true
         };
 
         await _userService.SaveUserAsync(user, cancellationToken);

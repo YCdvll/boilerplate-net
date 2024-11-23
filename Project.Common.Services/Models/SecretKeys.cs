@@ -4,6 +4,5 @@ public class SecretKeys
 {
     public string? SqlConnectionString { get; set; }
     public string BlobConnexionString { get; set; }
-    public string SendGridToken { get; set; }
     public string HashApiKey { get; set; }
 }

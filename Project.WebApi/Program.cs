@@ -18,7 +18,6 @@ public static class Program
         builder.Services.AddCors();
 
         builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
-        builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("PartnersSettings"));
         var appSettings = builder.Configuration.GetSection("AppSettings").Get<AppSettings>();
         var sqlDbSettings = builder.Configuration.GetSection("SqlDbSettings");
 
@@ -37,7 +36,7 @@ public static class Program
             options.AddPolicy("Admin", policy => policy.RequireClaim("Role", "1"));
             options.AddPolicy("User", policy => policy.RequireClaim("Role", "2"));
         });
-
+        
         builder.Services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -64,7 +63,6 @@ public static class Program
         DependenciesRegistrar.Register(appSettings, builder.Services, secretKeys);
 
         builder.Services.AddControllers();
-
 
         var app = builder.Build();
 

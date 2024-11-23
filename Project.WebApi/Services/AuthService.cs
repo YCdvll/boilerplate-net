@@ -73,9 +73,6 @@ public class AuthService : IAuthService
         if (string.IsNullOrEmpty(user.Password))
             return new AccountResponse("Merci de renseigner un mot de passe valide", false);
 
-        if(string.IsNullOrEmpty(user.PostalAddress!.PostCode) || user.PostalAddress.PostCode.Length < 4)
-            return new AccountResponse("Merci de renseigner un code postal", false);
-
         var checkPassword = AuthHelper.PasswordPolicy(user.Password);
         if (!checkPassword.Item1)
             return new AccountResponse(checkPassword.Item2, checkPassword.Item1);

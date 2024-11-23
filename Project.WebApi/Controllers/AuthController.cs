@@ -42,9 +42,9 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost]
-    [Route("CreateUserAccount")]
+    [Route("Register")]
     [AllowAnonymous]
-    public async Task<AccountResponse> CreateUserAccountAsync(User user, CancellationToken cancellationToken)
+    public async Task<AccountResponse> RegisterAsync(User user, CancellationToken cancellationToken)
     {
         // return new AccountResponse("Merci pour l'intérêt que vous portez au site, mais les inscriptions ne sont pas encore ouvertes !!", false);
 
